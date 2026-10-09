@@ -89,3 +89,13 @@ PRODUCT_PACKAGES += \
 # nil-UUID TA (xtest regression_1043): OP-TEE must refuse to load it
 PRODUCT_PACKAGES += \
     00000000-0000-0000-0000-000000000000.ta
+
+# Gatekeeper HAL backed by the OP-TEE Rust Gatekeeper TA
+# (replaces the cuttlefish gatekeeper APEXes, see phony_override/Android.mk)
+PRODUCT_PACKAGES += android.hardware.gatekeeper-service.optee.rust
+
+# Gatekeeper TA (Rust) used by the HAL above
+PRODUCT_PACKAGES += 4d573443-6a56-4272-ac6f-2425af9ef9bb.ta
+
+# VTS GateKeeper test binary (for on-device debugging)
+PRODUCT_PACKAGES_DEBUG += VtsHalGatekeeperTargetTest
