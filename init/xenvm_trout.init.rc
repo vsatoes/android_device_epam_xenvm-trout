@@ -17,6 +17,10 @@ service seriallogging /system/bin/logcat -b all -v threadtime -f /dev/vport2p6 *
     seclabel u:r:logpersist:s0
     override
 
+on fs
+    restorecon_recursive /mnt/vendor/persist
+    mkdir /mnt/vendor/persist/tee 0770 root system
+
 service tee-supplicant /vendor/bin/tee-supplicant
     class early_hal
     user root
