@@ -113,6 +113,9 @@ PRODUCT_PACKAGES += dba51a17-0563-11e7-93b1-6fa7b0071a51.ta
 # KeyMint TA relies on it to drop its secure deletion secrets.
 PRODUCT_VENDOR_PROPERTIES += ro.crypto.metadata_init_delete_all_keys.enabled=true
 
+# Provisions the KeyMint attestation IDs, once per device
+PRODUCT_PACKAGES += keymint-optee-provision-ids
+
 # VTS KeyMint, SecureClock, SharedSecret and RemotelyProvisionedComponent
 # test binaries (for on-device debugging)
 PRODUCT_PACKAGES_DEBUG += \
