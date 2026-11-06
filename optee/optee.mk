@@ -99,3 +99,24 @@ PRODUCT_PACKAGES += 4d573443-6a56-4272-ac6f-2425af9ef9bb.ta
 
 # VTS GateKeeper test binary (for on-device debugging)
 PRODUCT_PACKAGES_DEBUG += VtsHalGatekeeperTargetTest
+
+# KeyMint HAL (IKeyMintDevice, IRemotelyProvisionedComponent, ISecureClock,
+# ISharedSecret) backed by the OP-TEE Rust KeyMint TA
+# (replaces the cuttlefish keymint APEXes, see phony_override/Android.mk)
+PRODUCT_PACKAGES += android.hardware.security.keymint-service.optee.rust
+
+# KeyMint TA (Rust) used by the HAL above
+PRODUCT_PACKAGES += dba51a17-0563-11e7-93b1-6fa7b0071a51.ta
+
+# Factory reset: vold calls deleteAllKeys on the first boot after
+# /metadata is wiped. Inherited from cuttlefish, set here as the
+# KeyMint TA relies on it to drop its secure deletion secrets.
+PRODUCT_VENDOR_PROPERTIES += ro.crypto.metadata_init_delete_all_keys.enabled=true
+
+# VTS KeyMint, SecureClock, SharedSecret and RemotelyProvisionedComponent
+# test binaries (for on-device debugging)
+PRODUCT_PACKAGES_DEBUG += \
+    VtsAidlKeyMintTargetTest \
+    VtsAidlSecureClockTargetTest \
+    VtsAidlSharedSecretTargetTest \
+    VtsHalRemotelyProvisionedComponentTargetTest
