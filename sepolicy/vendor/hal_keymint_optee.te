@@ -8,3 +8,6 @@ allow hal_keymint_optee tee_device:chr_file rw_file_perms;
 
 # Vendor patch level sent to the TA (ro.vendor.build.security_patch)
 get_prop(hal_keymint_optee, vendor_security_patch_level_prop)
+
+# Boot patch level sent to the TA (ro.vendor.boot_security_patch)
+get_prop(hal_keymint_optee, vendor_boot_security_patch_level_prop)

@@ -49,6 +49,11 @@ BOARD_BOOTCONFIG += androidboot.cf_devcfg=1
 # Add WiFi configuration for VirtWifi network
 BOARD_BOOTCONFIG += androidboot.wifi_mac_prefix=5554
 
+# Device serial number (ro.boot.serialno -> ro.serialno). The trout
+# androidboot.serialno is passed via BOARD_KERNEL_CMDLINE, which is overridden
+# below, so set it here. Used as the KeyMint attestation serial ID.
+BOARD_BOOTCONFIG += androidboot.serialno=XENVMTROUT01
+
 # Override trout cmdline
 BOARD_KERNEL_CMDLINE = enforcing=0
 BOARD_KERNEL_CMDLINE += mac80211_hwsim.radios=0
